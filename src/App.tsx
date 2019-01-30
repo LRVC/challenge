@@ -59,18 +59,19 @@ class App extends React.Component<{}, State> {
   public render() {
     return (
       <div>
+        <h1>Hacker news username analytics</h1>
+
         {this.state.loading === true ? (
           <h1>Loading</h1>
         ) : (
           <ul>
             {this.state.posts.map((post, index) =>
               <li key={index}>
-                {post['node']['score']}
+                Score: {post['node']['score'] !== undefined ? post['node']['score'] : 0}
               </li>
             )}
           </ul>
         )}
-        <h1>Hacker news username analytics</h1>
       </div>
     );
   }
