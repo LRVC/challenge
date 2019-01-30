@@ -1,19 +1,55 @@
 import * as React from 'react';
 import './App.css';
 
-import logo from './logo.svg';
-
 class App extends React.Component {
+  public componentDidMount(): void {
+    this.setState({ loading: true }, () => {
+      fetch("https://www.graphqlhub.com/graphql", {
+        body: JSON.stringify({
+          query: `{
+                    hn2 {
+                      nodeFromHnId(id:"clayallsopp", isUserId:true) {
+                        id
+                        ... on HackerNewsV2User {
+                          submitted(first: 5) {
+                            pageInfo {
+                              hasNextPage
+                              endCursor
+                            }
+                            edges {
+                              cursor
+                              node {
+                                id
+                              ... on HackerNewsV2Comment {
+                                  score
+                                  text
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }`
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        method: "POST"
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(responseAsJson => {
+          this.setState({ loading: false, data: responseAsJson.data });
+        });
+    });
+  }
+
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <div>
+        <h1>Hacker news username analytics</h1>
       </div>
     );
   }
