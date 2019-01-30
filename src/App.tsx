@@ -1,7 +1,17 @@
 import * as React from 'react';
 import './App.css';
 
-class App extends React.Component {
+interface State {
+  loading: boolean;
+  posts: [];
+}
+
+class App extends React.Component<{}, State> {
+  public readonly state: State = {
+    loading: false,
+    posts: []
+  };
+
   public componentDidMount(): void {
     this.setState({ loading: true }, () => {
       fetch("https://www.graphqlhub.com/graphql", {
@@ -20,9 +30,9 @@ class App extends React.Component {
                               cursor
                               node {
                                 id
-                              ... on HackerNewsV2Comment {
+                              ... on HackerNewsV2Story {
                                   score
-                                  text
+                                  url
                                 }
                               }
                             }
@@ -41,7 +51,7 @@ class App extends React.Component {
           return response.json();
         })
         .then(responseAsJson => {
-          this.setState({ loading: false, data: responseAsJson.data });
+          this.setState({ loading: false, posts: responseAsJson.data.hn2.nodeFromHnId.submitted.edges });
         });
     });
   }
@@ -49,6 +59,17 @@ class App extends React.Component {
   public render() {
     return (
       <div>
+        {this.state.loading === true ? (
+          <h1>Loading</h1>
+        ) : (
+          <ul>
+            {this.state.posts.map((post, index) =>
+              <li key={index}>
+                {post['node']['score']}
+              </li>
+            )}
+          </ul>
+        )}
         <h1>Hacker news username analytics</h1>
       </div>
     );
