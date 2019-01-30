@@ -14,6 +14,19 @@ class App extends React.Component<{}, State> {
     username: "clayallsopp"
   };
 
+  constructor(props: any) {
+    super(props);
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  public handleChange(event: any) {
+    this.setState({
+      ...this.state,
+      username: event.target.value
+    })
+  }
+
   public componentDidMount(): void {
     this.setState({ loading: true }, () => {
       fetch("https://www.graphqlhub.com/graphql", {
@@ -62,6 +75,11 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <h1>Hacker news username analytics</h1>
+
+        <label>
+          Hacker News User Id:
+          <input type="text" value={this.state.username} onChange={this.handleChange} />
+        </label>
 
         {this.state.loading === true ? (
           <h1>Loading</h1>
