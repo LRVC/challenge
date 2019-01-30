@@ -11,23 +11,30 @@ class App extends React.Component<{}, State> {
   public readonly state: State = {
     loading: false,
     posts: [],
-    username: "clayallsopp"
+    username: ""
   };
 
   constructor(props: any) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   public handleChange(event: any) {
     this.setState({
       ...this.state,
       username: event.target.value
-    })
+    });
+
+    console.log("state during change: ", this.state)
   }
 
-  public componentDidMount(): void {
+  public handleSubmit(event: any) {
+    event.preventDefault();
+
+    console.log("we made it here at least", this.state)
+
     this.setState({ loading: true }, () => {
       fetch("https://www.graphqlhub.com/graphql", {
         body: JSON.stringify({
@@ -66,7 +73,11 @@ class App extends React.Component<{}, State> {
           return response.json();
         })
         .then(responseAsJson => {
-          this.setState({ loading: false, posts: responseAsJson.data.hn2.nodeFromHnId.submitted.edges });
+          this.setState({
+            ...this.state,
+            loading: false,
+            posts: responseAsJson.data.hn2.nodeFromHnId.submitted.edges
+          });
         });
     });
   }
@@ -76,10 +87,13 @@ class App extends React.Component<{}, State> {
       <div>
         <h1>Hacker news username analytics</h1>
 
-        <label>
-          Hacker News User Id:
-          <input type="text" value={this.state.username} onChange={this.handleChange} />
-        </label>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Hacker News User Id:
+            <input type="text" value={this.state.username} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
 
         {this.state.loading === true ? (
           <h1>Loading</h1>
