@@ -4,12 +4,14 @@ import './App.css';
 interface State {
   loading: boolean;
   posts: [];
+  username: string;
 }
 
 class App extends React.Component<{}, State> {
   public readonly state: State = {
     loading: false,
-    posts: []
+    posts: [],
+    username: "clayallsopp"
   };
 
   public componentDidMount(): void {
@@ -18,7 +20,7 @@ class App extends React.Component<{}, State> {
         body: JSON.stringify({
           query: `{
                     hn2 {
-                      nodeFromHnId(id:"clayallsopp", isUserId:true) {
+                      nodeFromHnId(id:"${this.state.username}", isUserId:true) {
                         id
                         ... on HackerNewsV2User {
                           submitted(first: 5) {
