@@ -73,10 +73,12 @@ class App extends React.Component<{}, State> {
           return response.json();
         })
         .then(responseAsJson => {
+          const edgeData: any  = responseAsJson.data.hn2.nodeFromHnId.submitted !== undefined ? responseAsJson.data.hn2.nodeFromHnId.submitted.edges : [];
+
           this.setState({
             ...this.state,
             loading: false,
-            posts: responseAsJson.data.hn2.nodeFromHnId.submitted.edges
+            posts: edgeData
           });
         });
     });
