@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import * as actions from './actions/index';
-import PostsTable from './components/PostsTable'
-import { StoreState } from './types/index';
+import * as actions from '../actions';
+import PostsTable from '../components/PostsTable'
+import { StoreState } from '../types';
 
 export function mapStateToProps({posts }: StoreState) {
   return { posts }
