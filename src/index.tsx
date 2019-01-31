@@ -12,7 +12,7 @@ import { StoreState } from './types/index';
 // @ts-ignore
 const store = createStore<StoreState>(postData, {
   posts: [],
-  topPostScore: undefined
+  topPostScore: 0
 });
 
 ReactDOM.render(

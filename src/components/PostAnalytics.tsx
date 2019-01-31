@@ -5,7 +5,7 @@ interface Props {
 }
 
 const PostAnalytics = ({ topPostScore }: Props) => (
-  <div>
+  <div className="posts-header">
     <h1>Top Post Score: {topPostScore}</h1>
   </div>
 );
