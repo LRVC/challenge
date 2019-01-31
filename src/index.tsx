@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import PostsTableContainer from './container/PostsTableContainer';
+import PostsTableContainer from './containers/PostsTableContainer';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
