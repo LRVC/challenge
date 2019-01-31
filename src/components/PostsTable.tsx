@@ -19,7 +19,7 @@ class PostsTable extends React.Component<Props, State> {
     loading: false,
   };
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
