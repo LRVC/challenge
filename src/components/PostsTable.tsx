@@ -65,23 +65,23 @@ class PostsTable extends React.Component<Props, State> {
         {this.state.loading === true ? (
           <div className="loading-header">
             <h1>Loading</h1>
-            <hr className="top-score-hr" />
+            <hr className="top-score-hr"/>
           </div>
         ) : (
           <div>
             <PostAnalytics topPostScore={this.props.topPostScore}/>
-            <hr className="top-score-hr" />
+            <hr className="top-score-hr"/>
 
-              {this.props.posts.map((post, index) =>
-                <div key={index} className="flex-container">
-                  <div>
-                    <h4>Score: {post['node']['score'] !== undefined ? post['node']['score'] : 0}</h4>
-                  </div>
-                  <div>
-                    <h4>{post['node']['url'] !== undefined ? <a href={post['node']['url']}>Link</a> : "No Url"}</h4>
-                  </div>
+            {this.props.posts.map((post, index) =>
+              <div key={index} className="flex-container">
+                <div>
+                  <h4>Score: {post['node']['score'] !== undefined ? post['node']['score'] : 0}</h4>
                 </div>
-              )}
+                <div>
+                  <h4>{post['node']['url'] !== undefined ? <a href={post['node']['url']}>Post Link</a> : "Missing"}</h4>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

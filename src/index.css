@@ -27,6 +27,15 @@ input[type=text] {
   border-radius: 3%;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: rgb(25, 39, 240)
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;
