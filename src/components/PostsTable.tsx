@@ -5,18 +5,18 @@ import PostAnalytics from "./PostAnalytics";
 interface Props {
   posts: [];
   topPostScore: number;
+  username: string;
   updatePosts: (posts: []) => void;
+  updateUserName: (username: string) => void;
 }
 
 interface State {
   loading: boolean;
-  username: string;
 }
 
 class PostsTable extends React.Component<Props, State> {
   public readonly state: State = {
     loading: false,
-    username: ""
   };
 
   constructor(props: any) {
@@ -27,17 +27,14 @@ class PostsTable extends React.Component<Props, State> {
   }
 
   public handleChange(event: React.FormEvent<HTMLInputElement>) {
-    this.setState({
-      ...this.state,
-      username: event.currentTarget.value
-    });
+    this.props.updateUserName(event.currentTarget.value);
   }
 
   public handleSubmit(event: any) {
     event.preventDefault();
 
     this.setState({loading: true}, () => {
-      HackerNewsApi.fetchPosts(this.state.username)
+      HackerNewsApi.fetchPosts(this.props.username)
         .then(response => {
           return response.json();
         })
@@ -61,7 +58,7 @@ class PostsTable extends React.Component<Props, State> {
         <h4 className="align-center">Enter your Hacker News User ID and get data on your posts</h4>
 
         <form onSubmit={this.handleSubmit} className="form-margin-top">
-          <input type="text" value={this.state.username} onChange={this.handleChange} placeholder="HN User ID"/>
+          <input type="text" value={this.props.username} onChange={this.handleChange} placeholder="HN User ID"/>
           <input type="submit" value="Submit" className="button"/>
         </form>
 

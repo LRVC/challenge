@@ -4,16 +4,18 @@ import * as actions from '../actions';
 import PostsTable from '../components/PostsTable'
 import { StoreState } from '../types';
 
-export function mapStateToProps({posts, topPostScore }: StoreState) {
+export function mapStateToProps({posts, topPostScore, username }: StoreState) {
   return {
     posts,
-    topPostScore
+    topPostScore,
+    username
   }
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.PostDataAction>) {
   return {
-    updatePosts: (posts: []) => dispatch(actions.updatePostData(posts))
+    updatePosts: (posts: []) => dispatch(actions.updatePostData(posts)),
+    updateUserName: (username: string) => dispatch(actions.updateUserName(username))
   }
 }
 

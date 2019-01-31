@@ -1,5 +1,6 @@
 export const UPDATE_POST_DATA = 'UPDATE_POST_DATA';
 export type UPDATE_POST_DATA = typeof UPDATE_POST_DATA;
 
-export default UPDATE_POST_DATA;
+export const UPDATE_USER_NAME = 'UPDATE_USER_NAME';
+export type UPDATE_USER_NAME = typeof UPDATE_USER_NAME;
 
