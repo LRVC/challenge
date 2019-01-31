@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PostAnalytics from "./PostAnalytics";
 
 interface Props {
   posts: [];
@@ -96,13 +97,17 @@ class PostsTable extends React.Component<Props, State> {
         {this.state.loading === true ? (
           <h1>Loading</h1>
         ) : (
-          <ul>
-            {this.props.posts.map((post, index) =>
-              <li key={index}>
-                Score: {post['node']['score'] !== undefined ? post['node']['score'] : 0}
-              </li>
-            )}
-          </ul>
+          <div>
+            <PostAnalytics topPostScore={6}/>
+
+            <ul>
+              {this.props.posts.map((post, index) =>
+                <li key={index}>
+                  Score: {post['node']['score'] !== undefined ? post['node']['score'] : 0}
+                </li>
+              )}
+            </ul>
+          </div>
         )}
       </div>
     );
