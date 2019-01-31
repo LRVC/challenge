@@ -58,7 +58,7 @@ class PostsTable extends React.Component<Props, State> {
     return (
       <div>
         <h1 className="align-center">Hacker News Analytics</h1>
-        <h4 className="align-center">Enter your Hacker News User ID and get analytics on your posts</h4>
+        <h4 className="align-center">Enter your Hacker News User ID and get data on your posts</h4>
 
         <form onSubmit={this.handleSubmit} className="form-margin-top">
           <input type="text" value={this.state.username} onChange={this.handleChange} placeholder="HN User ID"/>
