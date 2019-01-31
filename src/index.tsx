@@ -9,8 +9,7 @@ import { createStore } from 'redux';
 import { postData } from './reducers/index';
 import { StoreState } from './types/index';
 
-// @ts-ignore
-const store = createStore<StoreState>(postData, {
+const store = createStore<StoreState, any, any, any>(postData, {
   posts: [],
   topPostScore: 0
 });
