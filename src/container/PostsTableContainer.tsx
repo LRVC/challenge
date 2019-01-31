@@ -4,8 +4,11 @@ import * as actions from '../actions';
 import PostsTable from '../components/PostsTable'
 import { StoreState } from '../types';
 
-export function mapStateToProps({posts }: StoreState) {
-  return { posts }
+export function mapStateToProps({posts, topPostScore }: StoreState) {
+  return {
+    posts,
+    topPostScore
+  }
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.PostDataAction>) {

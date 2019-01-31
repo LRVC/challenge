@@ -3,6 +3,7 @@ import PostAnalytics from "./PostAnalytics";
 
 interface Props {
   posts: [];
+  topPostScore: number;
   updatePosts: (posts: [])=> void;
 }
 
@@ -98,7 +99,7 @@ class PostsTable extends React.Component<Props, State> {
           <h1>Loading</h1>
         ) : (
           <div>
-            <PostAnalytics topPostScore={6}/>
+            <PostAnalytics topPostScore={this.props.topPostScore}/>
 
             <ul>
               {this.props.posts.map((post, index) =>

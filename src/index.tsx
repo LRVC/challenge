@@ -11,7 +11,8 @@ import { StoreState } from './types/index';
 
 // @ts-ignore
 const store = createStore<StoreState>(postData, {
-  posts: []
+  posts: [],
+  topPostScore: undefined
 });
 
 ReactDOM.render(
