@@ -1,3 +1,15 @@
+App Description
+---------------
+
+Takes a Hacker News ID as an input and returns information about that users posts.
+This app uses:
+- React
+- Redux
+- Typescript
+- GraphQl
+- Webpack
+
+
 Running Locally
 ---------------
 
